@@ -49,6 +49,7 @@ CREATE TABLE `inventory` (
   `id` int NOT NULL AUTO_INCREMENT,
   `quantity_available` int DEFAULT 0,
   `product_id` int NOT NULL,
+  `warehouse_id` int NOT NULL,
   FOREIGN KEY (`product_id`) references product(id),
   FOREIGN KEY (`warehouse_id`) references warehouse(id),
   PRIMARY KEY (`id`)

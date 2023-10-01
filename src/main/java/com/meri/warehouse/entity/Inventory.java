@@ -1,5 +1,6 @@
 package com.meri.warehouse.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,10 +17,12 @@ public class Inventory {
 
     @ManyToOne
     @JoinColumn(name="product_id", nullable = false)
+    @JsonBackReference
     private Product product;
 
     @ManyToOne
     @JoinColumn(name="warehouse_id", nullable = false)
+    @JsonBackReference
     private Warehouse warehouse;
 
     public Inventory(int id, int quantityAvailable) {
