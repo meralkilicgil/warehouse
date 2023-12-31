@@ -2,16 +2,18 @@ package com.meri.warehouse.controller;
 
 import com.meri.warehouse.entity.Product;
 import com.meri.warehouse.service.ProductService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-public class MainController {
+@RequestMapping("/product")
+public class ProductController {
 
     private ProductService productService;
 
-    public MainController(ProductService productService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
@@ -28,13 +30,13 @@ public class MainController {
         return "saved!";
     }
 
-    @PutMapping("/updateProduct/id={id}")
+    @PutMapping("/updateProduct/{id}")
     public String updateProduct(@PathVariable(name="id") String id, @RequestBody Product product){
         productService.updateProduct(Integer.parseInt(id), product);
         return "updated!";
     }
 
-    @DeleteMapping("/deleteProduct/id={id}")
+    @DeleteMapping("/deleteProduct/{id}")
     public String deleteProduct(@PathVariable(name = "id")String id){
         productService.deleteById(Integer.parseInt(id));
         return "deleted!";
